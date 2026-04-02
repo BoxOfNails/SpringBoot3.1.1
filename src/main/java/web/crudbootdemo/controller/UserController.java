@@ -17,9 +17,8 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
     public UserController(UserService theUserService) {
         userService = theUserService;
     }
@@ -41,7 +40,6 @@ public class UserController {
     }
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") User theUser) {
-        System.out.println("User from web: " + theUser);
         userService.save(theUser);
         return "redirect:/users/list";
     }

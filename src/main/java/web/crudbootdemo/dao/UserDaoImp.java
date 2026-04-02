@@ -11,11 +11,10 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao{
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    @Autowired
     public UserDaoImp(EntityManager theEntityManager) {
-        entityManager=theEntityManager;
+        entityManager = theEntityManager;
     }
 
     @Override
@@ -38,7 +37,6 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public User save(User theUser) {
-        System.out.println("User in DAO: " + theUser);
         User dbUser = entityManager.merge(theUser);
         return dbUser;
     }
